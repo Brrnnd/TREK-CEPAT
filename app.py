@@ -2,70 +2,72 @@ import streamlit as st
 import joblib
 import numpy as np
 
-# LOAD MODEL
+
+# LOAD
+
 model = joblib.load('model.pkl')
 scaler = joblib.load('scaler.pkl')
 
-st.title(" Prediksi Depresi Mahasiswa")
+st.title(" Prediksi Depresi Mahasiswa ")
 
 st.divider()
 
 st.subheader(" Input Data")
 
-# INPUT SESUAI FITUR
 
-# 1. Suicidal Thoughts
-suicidal = st.selectbox(
-    "Pernah memiliki pikiran bunuh diri?",
-    ["No", "Yes"]
-)
+# INPUT DASAR
 
-# 2. Academic Pressure
-academic_pressure = st.slider("Academic Pressure (0-10)", 0, 5, 2)
+suicidal = st.selectbox("Pernah memiliki pikiran bunuh diri?", ["No", "Yes"])
 
-# 3. CGPA
+academic_pressure = st.slider("Academic Pressure", 0, 5, 2)
+work_pressure = st.slider("Work Pressure", 0, 5, 2)
+financial_stress = st.slider("Financial Stress", 0, 5, 2)
+
+study_satisfaction = st.slider("Study Satisfaction", 0, 5, 3)
+
 cgpa = st.slider("CGPA", 0.0, 10.0, 5.0)
-
-# 4. Financial Stress
-financial_stress = st.slider("Financial Stress (0-10)", 0, 5, 2)
-
-# 5. Age
 age = st.slider("Age", 18, 60, 25)
 
-# 6. City 
-city = st.selectbox("City Type", ["Metro", "Non-Metro"])
-
-# 7. Work/Study Hours
 study_hours = st.slider("Work/Study Hours", 0, 12, 4)
 
-# 8. Degree
-degree = st.selectbox(
-    "Degree",
-    ["Undergraduate", "Postgraduate"]
-)
+# City (optional sederhana)
+city = st.selectbox("City", ["Urban", "Non-Urban"])
 
-# ENCODING (HARUS SESUAI TRAINING)
+
+# ENCODING
 
 suicidal = 1 if suicidal == "Yes" else 0
-city = 1 if city == "Metro" else 0
-degree = 1 if degree == "Postgraduate" else 0
+city = 1 if city == "Urban" else 0
 
-# SUSUN DATA (URUTAN HARUS SAMA)
+
+# FEATURE ENGINEERING
+
+total_pressure = academic_pressure + work_pressure + financial_stress
+
+pressure_ratio = academic_pressure / (study_satisfaction + 1)
+
+
+# SUSUN SESUAI FINAL FEATURES
+
 input_data = np.array([[
     suicidal,
-    academic_pressure,
-    cgpa,
-    financial_stress,
+    total_pressure,
+    pressure_ratio,
     age,
+    cgpa,
+    academic_pressure,
     city,
-    study_hours,
-    degree
+    study_hours
 ]])
 
+
 # SCALING
+
 input_scaled = scaler.transform(input_data)
 
+
 # PREDIKSI
+
 st.divider()
 
 if st.button(" Prediksi"):
@@ -81,6 +83,7 @@ if st.button(" Prediksi"):
 
     st.write(f"Probabilitas: **{prob[0][1]*100:.2f}%**")
 
-# INFO
+
+
 st.divider()
 

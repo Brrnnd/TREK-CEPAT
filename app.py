@@ -21,22 +21,19 @@ suicidal = st.selectbox(
 )
 
 # 2. Academic Pressure
-academic_pressure = st.slider("Academic Pressure (0-10)", 0, 10, 5)
+academic_pressure = st.slider("Academic Pressure (0-10)", 0, 5, 2)
 
 # 3. CGPA
-cgpa = st.slider("CGPA", 0.0, 4.0, 3.0)
+cgpa = st.slider("CGPA", 0.0, 10.0, 5.0)
 
 # 4. Financial Stress
-financial_stress = st.slider("Financial Stress (0-10)", 0, 10, 5)
+financial_stress = st.slider("Financial Stress (0-10)", 0, 5, 2)
 
 # 5. Age
-age = st.slider("Age", 15, 40, 20)
+age = st.slider("Age", 18, 60, 25)
 
-# 6. City (contoh kategori, sesuaikan kalau beda)
-city = st.selectbox(
-    "City",
-    ["Urban", "Rural"]
-)
+# 6. City 
+city = st.selectbox("City Type", ["Metro", "Non-Metro"])
 
 # 7. Work/Study Hours
 study_hours = st.slider("Work/Study Hours", 0, 12, 4)
@@ -50,7 +47,7 @@ degree = st.selectbox(
 # ENCODING (HARUS SESUAI TRAINING)
 
 suicidal = 1 if suicidal == "Yes" else 0
-city = 1 if city == "Urban" else 0
+city = 1 if city == "Metro" else 0
 degree = 1 if degree == "Postgraduate" else 0
 
 # SUSUN DATA (URUTAN HARUS SAMA)
@@ -87,8 +84,3 @@ if st.button(" Prediksi"):
 # INFO
 st.divider()
 
-st.markdown("### Keterangan")
-st.write("""
-- Skala 0–10 menunjukkan tingkat tekanan
-- Nilai lebih tinggi → tekanan lebih tinggi
-""")

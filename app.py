@@ -31,13 +31,13 @@ age = st.slider("Age", 18, 60, 25)
 study_hours = st.slider("Work/Study Hours", 0, 12, 4)
 
 # City (optional sederhana)
-city = st.selectbox("City", ["Urban", "Non-Urban"])
+city = st.selectbox("City", ["Metro", "Non-Metro"])
 
 
 # ENCODING
 
 suicidal = 1 if suicidal == "Yes" else 0
-city = 1 if city == "Urban" else 0
+city = 1 if city == "Metro" else 0
 
 
 # FEATURE ENGINEERING

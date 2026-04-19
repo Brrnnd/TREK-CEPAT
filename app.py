@@ -17,7 +17,7 @@ st.subheader(" Input Data")
 
 # INPUT DASAR
 
-suicidal = st.selectbox("Pernah memiliki pikiran bunuh diri?", ["No", "Yes"])
+suicidal = st.selectbox("Pernah memiliki pikiran bunuh diri?", ["Tidak", "Ya"])
 
 academic_pressure = st.slider("Tekanan Akademik", 0, 5, 2)
 work_pressure = st.slider("Tekanan Kerja", 0, 5, 2)

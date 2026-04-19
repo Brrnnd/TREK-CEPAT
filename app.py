@@ -5,7 +5,7 @@ import numpy as np
 
 # LOAD
 
-model = joblib.load('model.pkl')
+model = joblib.load('model_lr.pkl')
 scaler = joblib.load('scaler.pkl')
 
 st.title(" Prediksi Depresi Mahasiswa ")

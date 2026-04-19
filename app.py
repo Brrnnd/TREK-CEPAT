@@ -19,19 +19,19 @@ st.subheader(" Input Data")
 
 suicidal = st.selectbox("Pernah memiliki pikiran bunuh diri?", ["No", "Yes"])
 
-academic_pressure = st.slider("Academic Pressure", 0, 5, 2)
-work_pressure = st.slider("Work Pressure", 0, 5, 2)
-financial_stress = st.slider("Financial Stress", 0, 5, 2)
+academic_pressure = st.slider("Tekanan Akademik", 0, 5, 2)
+work_pressure = st.slider("Tekanan Kerja", 0, 5, 2)
+financial_stress = st.slider("Tekanan Keuangan", 0, 5, 2)
 
-study_satisfaction = st.slider("Study Satisfaction", 0, 5, 3)
+study_satisfaction = st.slider("Kepuasan Belajar", 0, 5, 3)
 
-cgpa = st.slider("CGPA", 0.0, 10.0, 5.0)
-age = st.slider("Age", 18, 60, 25)
+cgpa = st.slider("Nilai", 0.0, 10.0, 5.0)
+age = st.slider("Umur", 18, 60, 25)
 
-study_hours = st.slider("Work/Study Hours", 0, 12, 4)
+study_hours = st.slider("Jam Kerja/Belajar", 0, 12, 4)
 
-# City (optional sederhana)
-city = st.selectbox("City", ["Metro", "Non-Metro"])
+# City 
+city = st.selectbox("Tempat Tinggal", ["Metro", "Non-Metro"])
 
 
 # ENCODING
